@@ -14,10 +14,10 @@ function App() {
   const fetchGallery = () => {
     axios({
       method: "GET",
-      url: "/gallery", // get galleryItems from gallery.router.js (I think? or is it galleryItems)
+      url: "/gallery", // get galleryItems from gallery.router.js 
     })
       .then((response) => {
-        console.log("response from GET galleryItems", response.data);
+        console.log("response from GET gallery", response.data);
         setGalleryList(response.data);
       })
       .catch((error) => {
@@ -34,7 +34,7 @@ function App() {
 
       <GalleryList galleryList={galleryList}/>
       
-      <img src="images/goat_small.jpg" />
+      {/* <img src="images/goat_small.jpg" /> */}
     </div>
   );
 }

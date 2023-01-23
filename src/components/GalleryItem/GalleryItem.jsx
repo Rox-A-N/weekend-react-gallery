@@ -1,12 +1,12 @@
 function GalleryItem({gallery}) {
-    const handleGalleryClick = () => {
+    // const handleGalleryClick = () => {
 
-    }
+    // }
     return (
         <>
             {/* <h3>Gallery Items</h3> */}
 
-            <img src="gallery.path" key={gallery.id} width="100px" height="100px"/>
+            <img src={gallery.path} key={gallery.id} width="100px" height="100px"/>
                 {/* {gallery.path} */}
                 {/* {gallery.description}
                 {gallery.likes} */}
