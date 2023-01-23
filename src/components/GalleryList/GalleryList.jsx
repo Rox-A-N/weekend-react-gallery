@@ -3,11 +3,11 @@ import GalleryItem from "../GalleryItem/GalleryItem";
 function GalleryList({ galleryList }) {
   return (
     <>
-      <h3>Gallery List</h3>
+      {/* <h3>Gallery List</h3> */}
       
       {galleryList.map((gallery) => {
         return (
-          <GalleryItem gallery={gallery}/>
+          <GalleryItem gallery={gallery} key={gallery.id}/>
         );
       })}
     </>

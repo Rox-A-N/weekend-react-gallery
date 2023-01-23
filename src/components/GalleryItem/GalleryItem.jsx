@@ -1,3 +1,5 @@
+import "./GalleryItem.css";
+
 function GalleryItem({gallery}) {
     // const handleGalleryClick = () => {
 
@@ -5,12 +7,17 @@ function GalleryItem({gallery}) {
     return (
         <>
             {/* <h3>Gallery Items</h3> */}
-
-            <img src={gallery.path} key={gallery.id} width="100px" height="100px"/>
-                {/* {gallery.path} */}
-                {/* {gallery.description}
-                {gallery.likes} */}
-          
+            <div className="gallery">
+                <figure>
+                    <img src={gallery.path}   height="165px" width="125"  />
+                    <figcaption>
+                        <button>love it!</button>
+                    </figcaption>
+                        {/* {gallery.path} */}
+                        {/* {gallery.description}  // I originally was using a <div> tag and getting alll this info
+                        {gallery.likes} */}
+                </figure>
+            </div>
         </>
 
     );
