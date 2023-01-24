@@ -3,13 +3,37 @@ import "./App.css";
 import axios from "axios";
 import GalleryList from "../GalleryList/GalleryList";
 
+
 function App() {
   let [galleryList, setGalleryList] = useState([]);
-  // const gallery = useState([]);
+  let [loveCounter, setLoveCounter] = useState([]);
 
   useEffect(() => {
     fetchGallery();
   }, []);
+
+  useEffect(() => {
+    fetchLoveCounter();
+  }, []);
+
+  const fetchLoveCounter =  () => {
+  console.log('PUT counter for loves');
+    axios({
+      method: 'PUT',
+      url: "/gallery/like/:id",
+      data: { loveCounter }
+    })
+    .then((response) => {
+      console.log('PUT response from router', response);
+      // res.sendStatus(201); // error popped up with this: res not defined, no errors after I commented it out
+      setLoveCounter();
+   
+    })
+    .catch((error) => {
+      console.log( error );
+      res.sendStatus(500);
+    })
+  } // IDK if this is what the PUT is supposed to be doing, but its not erring out
 
   const fetchGallery = () => {
     axios({
