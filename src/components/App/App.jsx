@@ -12,28 +12,12 @@ function App() {
     fetchGallery();
   }, []);
 
-  useEffect(() => {
-    fetchLoveCounter();
-  }, []);
+  // useEffect(() => {
+  //   fetchLoveCounter();
+  // }, []);
 
-  const fetchLoveCounter =  () => {
-  console.log('PUT counter for loves');
-    axios({
-      method: 'PUT',
-      url: "/gallery/like/:id",
-      data: { loveCounter }
-    })
-    .then((response) => {
-      console.log('PUT response from router', response);
-      // res.sendStatus(201); // error popped up with this: res not defined, no errors after I commented it out
-      setLoveCounter();
-   
-    })
-    .catch((error) => {
-      console.log( error );
-      res.sendStatus(500);
-    })
-  } // IDK if this is what the PUT is supposed to be doing, but its not erring out
+  
+  // IDK if this is what the PUT is supposed to be doing, but its not erring out
 
   const fetchGallery = () => {
     axios({
@@ -56,7 +40,11 @@ function App() {
       </header>
       {/* <p>{JSON.stringify(galleryList)}</p> // splatted the gallery.data on the DOM, no images */}
 
-      <GalleryList galleryList={galleryList}/>
+      <GalleryList fetchGallery= {fetchGallery} galleryList={galleryList}/>
+      {/* new code below from CB */}
+      {/* <GalleryList galleryList={galleryList} fetchLoveCounter={fetchLoveCounter}/> */} 
+
+
       
       {/* <img src="images/goat_small.jpg" /> */}
     </div>

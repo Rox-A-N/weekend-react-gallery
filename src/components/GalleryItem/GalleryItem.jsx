@@ -1,37 +1,52 @@
 import { useState } from "react";
 import "./GalleryItem.css";
+import Axios from "axios";
 
-function GalleryItem({gallery}) {
+function GalleryItem({gallery, fetchGallery}) {
     // const handleGalleryClick = () => {
     const [isDisplayed, setIsDisplayed] = useState(true);
     
-    const [love, setLove] = useState(0);
     
-
     const toggleDisplay = () => {
         console.log('display image');
         setIsDisplayed(!isDisplayed);
     }
 
+    const fetchLoveCounter =  (id) => {
+        console.log('PUT counter for loves');
+          Axios({
+            method: 'PUT',
+            url: `/gallery/like/${id}`,
+          })
+          .then((response) => {
+            console.log('PUT response from router', response);
+            // res.sendStatus(201); // error popped up with this: res not defined, no errors after I commented it out
+            // setLoveCounter();
+         fetchGallery();
+          })
+          .catch((error) => {
+            console.log( error );
+            res.sendStatus(500);
+          })
+        } 
+        
+
     // }
     return (
         <>
-            {/* <h3>Gallery Items</h3> */}
             <div className="gallery">
                 <figure>
                     {isDisplayed &&
-                    <img src={gallery.path}   height="165px" width="125"  />
+                    <img src={gallery.path}   height="165px" width="125" onClick={toggleDisplay} />
                 }
                     {!isDisplayed &&
-                    <p>Description: {gallery.description}</p>
+                    <p onClick={toggleDisplay}>Description: {gallery.description}</p>
                     }                  
-                        {/* {gallery.path} */}
-                        {/* {gallery.description}  // I originally was using a <div> tag and getting alll this info
-                        {gallery.likes} */}
+                 
                 </figure>
-                <p>{love} people love this!</p>
-                        <button className="button" onClick={() => setLove(love + 1)}>love it!</button>
-                        <button className="button" onClick={toggleDisplay}>Description</button>
+                <p>{gallery.likes} people love this!</p>
+                        <button className="button" onClick={() => fetchLoveCounter(gallery.id)}>love it!</button>
+                       
             </div>
         </>
 
@@ -41,4 +56,3 @@ function GalleryItem({gallery}) {
 
 export default GalleryItem;
 
-// onClick={handleGalleryClick} // originally inside the div tag which is now <img> tag
